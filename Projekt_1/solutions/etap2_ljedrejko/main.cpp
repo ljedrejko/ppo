@@ -1,20 +1,19 @@
 #include <stdlib.h>
 #include <time.h>
 #include "MinesweeperBoard.h"
+#include <iostream>
+#include "MSBoardTextView.h"
+
+
 
 int main() {
     srand (time(nullptr));
-
-    MinesweeperBoard Board;
-
+    MinesweeperBoard Board(10, 10, NORMAL);
     Board.debug_display();
-    std::cout<<Board.getBoardHeight()<<std::endl;
-    std::cout<<Board.getBoardWidth()<<std::endl;
-    std::cout<<Board.getMineCount()<<std::endl;
-    std::cout<<Board.countMines(4, 4)<<std::endl;
-    std::cout<<Board.hasFlag(4,4 )<<std::endl;
-    std::cout<<Board.isRevealed(4, 4)<<std::endl;
-    std::cout<<Board.getFieldInfo(4, 4)<<std::endl;
-    Board.toggleFlag(4, 4);
+
+    MinesweeperBoard board(10,10,NORMAL);
+    MSBoardTextView view(board);
+    view.display();
+
     return 0;
 }
