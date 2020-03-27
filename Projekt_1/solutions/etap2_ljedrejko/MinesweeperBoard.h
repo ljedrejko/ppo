@@ -2,17 +2,24 @@
 #define MINESWEEPER_PROJECT_MINESWEEPERBOARD_H
 #include "Field.h"
 #include <iostream>
+enum GameMode  {DEBUG, EASY, NORMAL, HARD };
+enum GameState { RUNNING, FINISHED_WIN, FINISHED_LOSS };
 
 class MinesweeperBoard
 {
-    Field board[100][100];
-    int width;
-    int height;
     int mine_count;
-    GameState state;
+    GameState game_state;
+    GameMode game_mode;
+    bool first_action;
 
 public:
-    MinesweeperBoard(int width=10, int height=10, GameMode mode=NORMAL);
+
+    Field board[100][100];
+    public: int width;
+    public: int height;
+
+    MinesweeperBoard()=default;
+    MinesweeperBoard(int width, int height, GameMode mode);
     void debug_display() const;
     int getBoardWidth() const;
     int getBoardHeight() const;
@@ -23,6 +30,9 @@ public:
     bool isRevealed(int x, int y) const;
     char getFieldInfo(int x, int y) const;
     void toggleFlag(int x, int y);
+    GameState getGameState() const;
+    void revealField(int x, int y);
+
+
 };
 #endif //UNTITLED_MINESWEEPERBOARD_H
-
